@@ -22,6 +22,7 @@
  */
 #define CR_DEFAULT 0x0001
 #define CR_FIFO 0x0002
+#define CR_LIFO 0x0004
 
 #define CR_SCHED_MASK (CR_DEFAULT | CR_FIFO)
 
