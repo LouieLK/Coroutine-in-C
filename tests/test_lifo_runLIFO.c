@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "src/coroutine_int.h"
+#include "../src/coroutine_int.h"
 
 int main(void)
 {
