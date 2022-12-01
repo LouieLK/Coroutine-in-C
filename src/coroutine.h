@@ -24,7 +24,7 @@
 #define CR_FIFO 0x0002
 #define CR_LIFO 0x0004
 
-#define CR_SCHED_MASK (CR_DEFAULT | CR_FIFO)
+#define CR_SCHED_MASK (CR_DEFAULT | CR_FIFO|CR_LIFO)
 
 /**
  * coroutine_create - Create the coroutine
