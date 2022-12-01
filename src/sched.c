@@ -10,7 +10,7 @@
 #include "coroutine.h"
 #include "coroutine_int.h"
 
-/* LIFO scheduler */
+* LIFO scheduler */
 static inline int lifo_schedule(struct cr *cr, job_t func, void *args)
 {
     struct task_struct *new_task;
@@ -18,7 +18,7 @@ static inline int lifo_schedule(struct cr *cr, job_t func, void *args)
     new_task = calloc(1, sizeof(struct task_struct));
     if (!new_task)
         return -ENOMEM;
-    if (push_task(new_task) < 0)
+    if (push_task(&cr->s,new_task) < 0)
     {
         free(new_task);
         return -ENOMEM;
@@ -35,14 +35,14 @@ static inline int lifo_schedule(struct cr *cr, job_t func, void *args)
     return new_task->tfd;
 }
 
-static inline struct task_struct *lifo_pick_next_task()
+static inline struct task_struct *lifo_pick_next_task(struct cr *cr)
 {
-    return get_next();
+    return get_next(&cr->s);
 }
 
-static inline int lifo_put_prev_task(struct task_struct *prev)
+static inline int lifo_put_prev_task(struct cr *cr,struct task_struct *prev)
 {
-    return push_task(prev);
+    return push_task(&cr->s,prev);
 }
 
 /* FIFO scheduler */
