@@ -10,7 +10,7 @@
 #include "coroutine.h"
 #include "coroutine_int.h"
 
-* LIFO scheduler */
+/* LIFO scheduler */
 static inline int lifo_schedule(struct cr *cr, job_t func, void *args)
 {
     struct task_struct *new_task;
