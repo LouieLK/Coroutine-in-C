@@ -50,6 +50,17 @@ void rq_init(struct rq *rq);
 int rq_enqueue(struct rq *rq, struct task_struct *task);
 struct task_struct *rq_dequeue(struct rq *rq);
 
+//add stack definition
+#define MAX_STACK_SIZE 100000
+struct stack {
+    int top;
+    struct task_struct *stack[MAX_STACK_SIZE];
+};
+
+void rs_init(struct stack *stack);
+int push_task(struct stack *stack,struct task_struct *task);
+struct task_struct *get_next(struct stack *stack);
+
 /* main data structure */
 
 #define MAX_CR_TABLE_SIZE 10
@@ -63,6 +74,7 @@ struct cr {
     /* scheduler - chose by the flags */
     struct rq rq; /* FIFO */
     struct rb_root root; /* Default */
+    struct stack s;/*LIFO*/
 
     /* sched operations */
     int (*schedule)(struct cr *cr, job_t func, void *args);
